@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing Disruption Experience - EcoBloom Coffee Crisis</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* iframe-specific optimizations */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: auto;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Ensure proper height calculation for iframe */
+        .container {
+            min-height: calc(100vh - 120px);
+            padding-bottom: 40px;
+        }
+        
+        /* Better scroll behavior in iframe */
+        .chat-messages, .social-media-feed {
+            scroll-behavior: smooth;
+        }
+        
+        /* Prevent iframe content from being too wide */
+        * {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        
+        /* iframe-friendly alert styling */
+        .custom-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border: 2px solid #10b981;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        .custom-alert-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        
+        .alert-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+            justify-content: center;
+        }
+        
+        .alert-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .alert-btn.primary {
+            background: #10b981;
+            color: white;
+        }
+        
+        .alert-btn.secondary {
+            background: #6b7280;
+            color: white;
+        }
+        
+        .alert-btn:hover {
+            transform: translateY(-1px);
+        }
+    </style>
+    <style>
+        .scenario-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .crisis-alert {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+            animation: pulseAlert 2s ease-in-out;
+        }
+
+        @keyframes pulseAlert {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        .crisis-alert h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .crisis-alert::before {
+            content: "🚨";
+            font-size: 20px;
+        }
+
+        .decision-options {
+            display: grid;
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .decision-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .decision-card:hover {
+            border-color: #10b981;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .decision-card.selected {
+            border-color: #10b981;
+            background: #f0fdf4;
+        }
+
+        .decision-card h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .decision-card p {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        .consequences-panel {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+            border-left: 4px solid #10b981;
+            display: none;
+        }
+
+        .consequences-panel.show {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .metrics-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .metric-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 4px;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 16px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #059669);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .continue-btn {
+            background: #10b981;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 20px;
+        }
+
+        .continue-btn:hover {
+            background: #059669;
+            transform: translateY(-1px);
+        }
+
+        .continue-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .social-media-feed {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .social-post {
+            border-bottom: 1px solid #f3f4f6;
+            padding: 12px 0;
+            font-size: 14px;
+        }
+
+        .social-post:last-child {
+            border-bottom: none;
+        }
+
+        .social-post .username {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .reflection-panel {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .reflection-panel h4 {
+            color: #92400e;
+            margin-bottom: 12px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .reflection-input {
+            width: 100%;
+            min-height: 80px;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            line-height: 1.5;
+            resize: vertical;
+        }
+
+        .scenario-progress {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding: 16px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .scenario-number {
+            font-size: 14px;
+            font-weight: 600;
+            color: #6b7280;
+        }
+
+        .reset-btn {
+            background: #6b7280;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .reset-btn:hover {
+            background: #4b5563;
+        }
+
+        .brand-info {
+            background: #e0f2fe;
+            border: 1px solid #0284c7;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .brand-info h3 {
+            color: #0369a1;
+            margin-bottom: 12px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .completed-scenario {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .scenario-complete {
+            background: #10b981;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 12px;
+            margin: 24px 0;
+        }
+
+        .scenario-complete h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .final-score {
+            font-size: 48px;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+
+        /* Enhanced Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .scenario-container {
+                padding: 16px;
+            }
+
+            .crisis-alert {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+
+            .crisis-alert h3 {
+                font-size: 16px;
+            }
+
+            .decision-card {
+                padding: 16px;
+                margin-bottom: 12px;
+            }
+
+            .decision-card h4 {
+                font-size: 15px;
+            }
+
+            .decision-card p {
+                font-size: 13px;
+            }
+
+            .metrics-dashboard {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                margin: 16px 0;
+            }
+
+            .metric-card {
+                padding: 12px;
+            }
+
+            .metric-value {
+                font-size: 20px;
+            }
+
+            .consequences-panel {
+                padding: 16px;
+                margin: 16px 0;
+            }
+
+            .social-media-feed {
+                padding: 16px;
+                max-height: 200px;
+            }
+
+            .reflection-panel {
+                padding: 16px;
+                margin: 16px 0;
+            }
+
+            .reflection-input {
+                min-height: 60px;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+
+            .continue-btn {
+                width: 100%;
+                padding: 14px 20px;
+                font-size: 16px;
+            }
+
+            .scenario-progress {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+
+            .progress-bar {
+                order: -1;
+            }
+
+            .brand-info {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+
+            .brand-info h3 {
+                font-size: 16px;
+            }
+
+            .final-score {
+                font-size: 36px;
+            }
+
+            .scenario-complete {
+                padding: 24px 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .metrics-dashboard {
+                grid-template-columns: 1fr;
+            }
+
+            .header-text h1 {
+                font-size: 22px;
+            }
+
+            .header-text p {
+                font-size: 13px;
+            }
+
+            .crisis-alert h3 {
+                font-size: 15px;
+            }
+
+            .decision-card h4 {
+                font-size: 14px;
+            }
+
+            .final-score {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">EB</div>
+            <div class="header-text">
+                <h1>Marketing Crisis Simulation</h1>
+                <p>Navigate real-world marketing disruptions as EcoBloom's Marketing Director</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="scenario-container">
+            <!-- Progress Indicator -->
+            <div class="scenario-progress">
+                <div class="scenario-number">Crisis <span id="currentCrisis">1</span> of 5</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 20%"></div>
+                </div>
+                <button class="reset-btn" onclick="resetSimulation()">Reset</button>
+            </div>
+
+            <!-- Brand Information -->
+            <div class="brand-info" id="brandInfo">
+                <h3>🌱 EcoBloom Coffee</h3>
+                <p><strong>Your Role:</strong> Marketing Director (Day 1 on the job!)</p>
+                <p><strong>Company:</strong> Mid-size sustainable coffee roaster, 15 years in business</p>
+                <p><strong>Mission:</strong> Launching "Urban Harvest" cold brew line targeting busy professionals</p>
+                <p><strong>Budget:</strong> $500K quarterly • <strong>Timeline:</strong> 3 weeks to launch</p>
+            </div>
+
+            <!-- Current Metrics Dashboard -->
+            <div class="metrics-dashboard" id="metricsDashboard">
+                <div class="metric-card">
+                    <div class="metric-value" id="budgetRemaining">$500K</div>
+                    <div class="metric-label">Budget Remaining</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="brandTrust">85%</div>
+                    <div class="metric-label">Brand Trust</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="socialSentiment">Neutral</div>
+                    <div class="metric-label">Social Sentiment</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="timeRemaining">21 days</div>
+                    <div class="metric-label">Launch Countdown</div>
+                </div>
+            </div>
+
+            <!-- Crisis Scenario -->
+            <div id="crisisContainer">
+                <!-- Crisis content will be dynamically loaded here -->
+            </div>
+
+            <!-- Decision Options -->
+            <div class="decision-options" id="decisionOptions">
+                <!-- Decision cards will be dynamically generated -->
+            </div>
+
+            <!-- Consequences Panel -->
+            <div class="consequences-panel" id="consequencesPanel">
+                <h4>📊 Immediate Impact</h4>
+                <div id="consequencesContent"></div>
+                
+                <!-- Social Media Feed -->
+                <div class="social-media-feed" id="socialFeed" style="display: none;">
+                    <h5 style="margin-bottom: 12px;">📱 Social Media Reactions</h5>
+                    <div id="socialPosts"></div>
+                </div>
+
+                <button class="continue-btn" id="continueBtn" onclick="nextCrisis()">Continue to Next Crisis</button>
+            </div>
+
+            <!-- Reflection Panel -->
+            <div class="reflection-panel" id="reflectionPanel" style="display: none;">
+                <h4>🤔 Reflection Moment</h4>
+                <p>What did you learn from this decision? What would you do differently?</p>
+                <textarea class="reflection-input" id="reflectionInput" placeholder="Share your thoughts..."></textarea>
+                <button class="continue-btn" onclick="saveReflection()">Save & Continue</button>
+            </div>
+
+            <!-- Completion Screen -->
+            <div class="scenario-complete" id="completionScreen" style="display: none;">
+                <h2>🎉 Crisis Management Complete!</h2>
+                <div class="final-score" id="finalScore">8.5/10</div>
+                <p>You've successfully navigated all 5 marketing disruptions as EcoBloom's Marketing Director.</p>
+                <p>Your decisions shaped the brand's future and taught you valuable lessons about crisis management.</p>
+                <button class="continue-btn" onclick="viewSummary()">View Performance Summary</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Game State
+        let gameState = {
+            currentCrisis: 1,
+            budget: 500000,
+            brandTrust: 85,
+            socialSentiment: 'neutral',
+            timeRemaining: 21,
+            decisions: [],
+            reflections: [],
+            score: 0
+        };
+
+        // Crisis Data
+        const crises = [
+            {
+                id: 1,
+                title: "Supplier Scandal Breaks",
+                description: "Your primary coffee supplier, GreenSource Coffee, has been exposed in a major investigative report for illegal deforestation practices in Costa Rica. #EcoBloomScandal is trending on social media with over 50K mentions in the past hour.",
+                details: "Environmental activists are calling for boycotts, and your company's sustainability claims are being questioned. Your CEO needs an immediate response strategy.",
+                options: [
+                    {
+                        id: 'a',
+                        title: "Immediate Public Apology & Supplier Termination",
+                        description: "Issue a public statement immediately, apologize for the oversight, and announce termination of the supplier relationship.",
+                        impact: { budget: -50000, trust: -5, sentiment: 'mixed', time: 0 }
+                    },
+                    {
+                        id: 'b',
+                        title: "Launch Internal Investigation First",
+                        description: "Pause public communications while conducting a thorough internal investigation to gather all facts before responding.",
+                        impact: { budget: -25000, trust: -10, sentiment: 'negative', time: -2 }
+                    },
+                    {
+                        id: 'c',
+                        title: "Deflect & Defend Brand Values",
+                        description: "Emphasize that EcoBloom wasn't directly involved and highlight your company's strong environmental track record.",
+                        impact: { budget: -10000, trust: -15, sentiment: 'very negative', time: 0 }
+                    },
+                    {
+                        id: 'd',
+                        title: "Pause All Marketing Until Resolution",
+                        description: "Halt all marketing activities and the Urban Harvest launch until the situation is completely resolved.",
+                        impact: { budget: 0, trust: -8, sentiment: 'neutral', time: -7 }
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: "Viral TikTok Opportunity",
+                description: "TikTok influencer @BaristaBae (2.3M followers) just posted a video rating coffee brands by employee treatment. EcoBloom scored 9/10! The video has 500K views and climbing.",
+                details: "Comments are flooding in asking where to buy EcoBloom coffee. Your website traffic has increased 300% in 2 hours, but servers are struggling. The influencer wants to partner immediately.",
+                options: [
+                    {
+                        id: 'a',
+                        title: "Immediate Influencer Partnership",
+                        description: "Reach out to @BaristaBae immediately and propose a paid partnership deal while the momentum is hot.",
+                        impact: { budget: -75000, trust: 5, sentiment: 'positive', time: 0 }
+                    },
+                    {
+                        id: 'b',
+                        title: "Create Company Response Video",
+                        description: "Quickly produce and post a thank-you video highlighting your employee benefits and company culture.",
+                        impact: { budget: -30000, trust: 8, sentiment: 'positive', time: -1 }
+                    },
+                    {
+                        id: 'c',
+                        title: "Boost Organic Engagement",
+                        description: "Focus on responding to comments and boosting positive mentions without paying for partnerships.",
+                        impact: { budget: -10000, trust: 3, sentiment: 'neutral', time: 0 }
+                    },
+                    {
+                        id: 'd',
+                        title: "Stay in Background",
+                        description: "Let the organic buzz continue without company interference to maintain authenticity.",
+                        impact: { budget: 0, trust: 2, sentiment: 'neutral', time: 0 }
+                    }
+                ]
+            },
+            {
+                id: 3,
+                title: "Supply Chain Disruption",
+                description: "Hurricane damage in Central America has disrupted coffee shipments. 60% of your Urban Harvest inventory is stuck in ports indefinitely.",
+                details: "Alternative suppliers are available but at 40% higher cost. Competitor Peak Coffee just announced a 50% off flash sale. Your retail partners are demanding guaranteed inventory levels.",
+                options: [
+                    {
+                        id: 'a',
+                        title: "Secure Alternative Suppliers",
+                        description: "Pay premium prices for alternative suppliers to maintain launch timeline and inventory levels.",
+                        impact: { budget: -150000, trust: 5, sentiment: 'neutral', time: 0 }
+                    },
+                    {
+                        id: 'b',
+                        title: "Delay Launch & Communicate Transparently",
+                        description: "Postpone launch, explain supply chain issues to customers, and offer pre-order discounts.",
+                        impact: { budget: -40000, trust: 3, sentiment: 'mixed', time: -10 }
+                    },
+                    {
+                        id: 'c',
+                        title: "Limited Edition Launch",
+                        description: "Launch with reduced inventory as a 'limited edition' to create scarcity marketing.",
+                        impact: { budget: -60000, trust: 0, sentiment: 'mixed', time: 0 }
+                    },
+                    {
+                        id: 'd',
+                        title: "Counter-Attack Competitor Pricing",
+                        description: "Match competitor pricing despite higher costs to maintain market position.",
+                        impact: { budget: -200000, trust: -2, sentiment: 'neutral', time: 0 }
+                    }
+                ]
+            },
+            {
+                id: 4,
+                title: "Regulatory Compliance Crisis",
+                description: "FDA announces new labeling requirements for 'sustainable' claims, effective immediately. All current packaging is non-compliant.",
+                details: "Legal team estimates $200K minimum for compliant repackaging. You have 30 days to comply or halt all sustainability messaging. Current inventory could become unsellable.",
+                options: [
+                    {
+                        id: 'a',
+                        title: "Emergency Repackaging",
+                        description: "Invest in rapid repackaging to maintain sustainability messaging and brand identity.",
+                        impact: { budget: -200000, trust: 8, sentiment: 'positive', time: -5 }
+                    },
+                    {
+                        id: 'b',
+                        title: "Pivot to Quality Messaging",
+                        description: "Shift all messaging from sustainability to product quality and taste while ensuring compliance.",
+                        impact: { budget: -80000, trust: -3, sentiment: 'mixed', time: -2 }
+                    },
+                    {
+                        id: 'c',
+                        title: "Minimal Compliance Approach",
+                        description: "Make only the minimum changes required by law and de-emphasize sustainability claims.",
+                        impact: { budget: -50000, trust: -8, sentiment: 'negative', time: 0 }
+                    },
+                    {
+                        id: 'd',
+                        title: "Legal Challenge Strategy",
+                        description: "Challenge the regulations while implementing temporary compliance measures.",
+                        impact: { budget: -300000, trust: -5, sentiment: 'very negative', time: -8 }
+                    }
+                ]
+            },
+            {
+                id: 5,
+                title: "Celebrity Endorsement Opportunity",
+                description: "A-list celebrity was photographed with EcoBloom coffee cup. Their publicist calls offering immediate endorsement deal for $250K.",
+                details: "The celebrity is currently trending but got involved in minor controversy yesterday. Your remaining budget is limited, and legal needs 2 weeks for proper contracts. Social media is already connecting them to your brand.",
+                options: [
+                    {
+                        id: 'a',
+                        title: "Accept Celebrity Deal",
+                        description: "Move quickly to secure the celebrity endorsement despite risks and budget constraints.",
+                        impact: { budget: -250000, trust: 0, sentiment: 'mixed', time: -3 }
+                    },
+                    {
+                        id: 'b',
+                        title: "Negotiate Reduced Partnership",
+                        description: "Propose a smaller social media partnership within budget and timeline constraints.",
+                        impact: { budget: -100000, trust: 2, sentiment: 'positive', time: -1 }
+                    },
+                    {
+                        id: 'c',
+                        title: "Politely Decline",
+                        description: "Thank them but explain budget and timeline constraints prevent a formal partnership.",
+                        impact: { budget: 0, trust: 1, sentiment: 'neutral', time: 0 }
+                    },
+                    {
+                        id: 'd',
+                        title: "Leverage Organic Mention",
+                        description: "Acknowledge the organic endorsement without formal partnership to avoid controversy risk.",
+                        impact: { budget: -20000, trust: 3, sentiment: 'positive', time: 0 }
+                    }
+                ]
+            }
+        ];
+
+        // Social media posts for different scenarios
+        const socialPosts = {
+            1: {
+                'a': [
+                    { user: '@EcoWarrior', text: 'Finally! A company that takes responsibility. Respect @EcoBloom 👏' },
+                    { user: '@SkepticalSarah', text: 'Too little too late? Should have vetted suppliers better...' },
+                    { user: '@CoffeeLover99', text: 'Still buying EcoBloom. Mistakes happen, accountability matters.' }
+                ],
+                'b': [
+                    { user: '@TransparencyTom', text: 'Why the silence @EcoBloom?? We need answers NOW' },
+                    { user: '@BoycottBrands', text: 'Radio silence = guilt. Done with @EcoBloom forever' },
+                    { user: '@PatiencePatty', text: 'Maybe they are getting facts straight before responding? 🤷‍♀️' }
+                ],
+                'c': [
+                    { user: '@CalloutCulture', text: 'DEFLECTION MUCH?? @EcoBloom take some responsibility!' },
+                    { user: '@GreenwashAlert', text: 'Classic greenwashing defense. Not buying it @EcoBloom 🙄' },
+                    { user: '@AngryCoffee', text: 'Lost all respect for @EcoBloom. What a disappointing response.' }
+                ]
+            },
+            2: {
+                'a': [
+                    { user: '@BaristaBae', text: 'OMG @EcoBloom just DMed me! Partnership incoming?? 👀☕' },
+                    { user: '@InfluencerWatch', text: 'Smart move @EcoBloom! Strike while the iron is hot 🔥' },
+                    { user: '@AuthenticityPolice', text: 'From organic praise to paid partnership... hmm 🤔' }
+                ],
+                'b': [
+                    { user: '@HRHero', text: 'Love this response from @EcoBloom! More companies should treat employees right 💪' },
+                    { user: '@CorporateComms', text: 'Well played @EcoBloom - authentic response to organic praise' },
+                    { user: '@CynicalSally', text: 'Convenient timing for this employee appreciation post... 👀' }
+                ]
+            }
+        };
+
+        // Initialize the simulation
+        function initializeSimulation() {
+            displayCrisis(crises[0]);
+            updateMetrics();
+        }
+
+        // Display current crisis
+        function displayCrisis(crisis) {
+            const container = document.getElementById('crisisContainer');
+            container.innerHTML = `
+                <div class="crisis-alert">
+                    <h3>Breaking: ${crisis.title}</h3>
+                    <p>${crisis.description}</p>
+                </div>
+                <div class="professor-card">
+                    <div class="professor-info">
+                        <div class="professor-avatar">📞</div>
+                        <div class="professor-details">
+                            <h3>CEO Emergency Call</h3>
+                            <p>Urgent Strategy Meeting</p>
+                        </div>
+                    </div>
+                    <p>${crisis.details}</p>
+                </div>
+            `;
+
+            displayDecisionOptions(crisis.options);
+        }
+
+        // Display decision options
+        function displayDecisionOptions(options) {
+            const container = document.getElementById('decisionOptions');
+            container.innerHTML = '';
+
+            options.forEach(option => {
+                const card = document.createElement('div');
+                card.className = 'decision-card';
+                card.onclick = () => selectDecision(option);
+                card.innerHTML = `
+                    <h4>${option.title}</h4>
+                    <p>${option.description}</p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Handle decision selection
+        function selectDecision(decision) {
+            // Clear previous selections
+            document.querySelectorAll('.decision-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+
+            // Mark current selection
+            event.currentTarget.classList.add('selected');
+
+            // Store decision
+            gameState.decisions.push({
+                crisis: gameState.currentCrisis,
+                decision: decision.id,
+                title: decision.title
+            });
+
+            // Apply impact
+            applyDecisionImpact(decision.impact);
+
+            // Show consequences
+            showConsequences(decision);
+
+            // Update metrics
+            updateMetrics();
+        }
+
+        // Apply decision impact to game state
+        function applyDecisionImpact(impact) {
+            gameState.budget += impact.budget;
+            gameState.brandTrust += impact.trust;
+            gameState.socialSentiment = impact.sentiment;
+            gameState.timeRemaining += impact.time;
+            
+            // Calculate score based on performance
+            gameState.score += calculateDecisionScore(impact);
+        }
+
+        // Calculate score for decision
+        function calculateDecisionScore(impact) {
+            let score = 0;
+            
+            // Budget efficiency (higher is better, but not overspending)
+            if (impact.budget > -100000) score += 2;
+            else if (impact.budget > -200000) score += 1;
+            
+            // Brand trust (positive is good)
+            score += Math.max(0, impact.trust / 2);
+            
+            // Time management (staying on schedule is good)
+            if (impact.time >= 0) score += 1;
+            
+            return Math.max(0, score);
+        }
+
+        // Show consequences of decision
+        function showConsequences(decision) {
+            const panel = document.getElementById('consequencesPanel');
+            const content = document.getElementById('consequencesContent');
+            
+            content.innerHTML = `
+                <p><strong>Budget Impact:</strong> ${decision.impact.budget < 0 ? '-' : '+'}$${Math.abs(decision.impact.budget).toLocaleString()}</p>
+                <p><strong>Brand Trust:</strong> ${decision.impact.trust > 0 ? '+' : ''}${decision.impact.trust}%</p>
+                <p><strong>Social Sentiment:</strong> ${decision.impact.sentiment}</p>
+                <p><strong>Timeline Impact:</strong> ${decision.impact.time} days</p>
+            `;
+
+            // Show social media reactions if available
+            const socialFeed = document.getElementById('socialFeed');
+            const socialPosts_ = socialPosts[gameState.currentCrisis];
+            if (socialPosts_ && socialPosts_[decision.id]) {
+                const postsContainer = document.getElementById('socialPosts');
+                postsContainer.innerHTML = '';
+                
+                socialPosts_[decision.id].forEach(post => {
+                    const postDiv = document.createElement('div');
+                    postDiv.className = 'social-post';
+                    postDiv.innerHTML = `<span class="username">${post.user}</span>: ${post.text}`;
+                    postsContainer.appendChild(postDiv);
+                });
+                
+                socialFeed.style.display = 'block';
+            }
+
+            panel.classList.add('show');
+        }
+
+        // Update metrics dashboard
+        function updateMetrics() {
+            document.getElementById('budgetRemaining').textContent = `$${Math.max(0, gameState.budget).toLocaleString()}`;
+            document.getElementById('brandTrust').textContent = `${Math.max(0, gameState.brandTrust)}%`;
+            document.getElementById('socialSentiment').textContent = gameState.socialSentiment.charAt(0).toUpperCase() + gameState.socialSentiment.slice(1);
+            document.getElementById('timeRemaining').textContent = `${Math.max(0, gameState.timeRemaining)} days`;
+        }
+
+        // Continue to next crisis
+        function nextCrisis() {
+            if (gameState.currentCrisis < 5) {
+                // Show reflection panel
+                document.getElementById('reflectionPanel').style.display = 'block';
+                document.getElementById('consequencesPanel').style.display = 'none';
+            } else {
+                completeSimulation();
+            }
+        }
+
+        // Save reflection and continue
+        function saveReflection() {
+            const reflection = document.getElementById('reflectionInput').value;
+            gameState.reflections.push({
+                crisis: gameState.currentCrisis,
+                reflection: reflection
+            });
+
+            document.getElementById('reflectionPanel').style.display = 'none';
+            document.getElementById('reflectionInput').value = '';
+
+            if (gameState.currentCrisis < 5) {
+                gameState.currentCrisis++;
+                document.getElementById('currentCrisis').textContent = gameState.currentCrisis;
+                document.getElementById('progressFill').style.width = `${(gameState.currentCrisis / 5) * 100}%`;
+                
+                displayCrisis(crises[gameState.currentCrisis - 1]);
+                document.getElementById('consequencesPanel').classList.remove('show');
+            } else {
+                completeSimulation();
+            }
+        }
+
+        // Complete simulation
+        function completeSimulation() {
+            const finalScore = (gameState.score / 10 * 10).toFixed(1);
+            document.getElementById('finalScore').textContent = `${finalScore}/10`;
+            document.getElementById('completionScreen').style.display = 'block';
+            document.getElementById('crisisContainer').style.display = 'none';
+            document.getElementById('decisionOptions').style.display = 'none';
+            document.getElementById('metricsDashboard').style.display = 'none';
+        }
+
+        // View performance summary
+        function viewSummary() {
+            showCustomAlert(
+                'Performance Summary',
+                'Your decisions and reflections have been saved. Performance summary feature coming soon!',
+                [{text: 'Close', class: 'primary', action: closeCustomAlert}]
+            );
+        }
+
+        // Reset simulation with custom alert
+        function resetSimulation() {
+            showCustomAlert(
+                'Reset Simulation',
+                'Are you sure you want to restart the simulation? All progress will be lost.',
+                [
+                    {text: 'Cancel', class: 'secondary', action: closeCustomAlert},
+                    {text: 'Reset', class: 'primary', action: confirmReset}
+                ]
+            );
+        }
+
+        // Custom alert system for iframe compatibility
+        function showCustomAlert(title, message, buttons) {
+            const overlay = document.createElement('div');
+            overlay.className = 'custom-alert-overlay';
+            overlay.onclick = closeCustomAlert;
+            
+            const alert = document.createElement('div');
+            alert.className = 'custom-alert';
+            alert.innerHTML = `
+                <h3 style="margin: 0 0 12px 0; color: #1f2937; font-size: 18px;">${title}</h3>
+                <p style="margin: 0 0 16px 0; color: #6b7280; line-height: 1.5;">${message}</p>
+                <div class="alert-buttons">
+                    ${buttons.map(btn => `<button class="alert-btn ${btn.class}" onclick="${btn.action.name}()">${btn.text}</button>`).join('')}
+                </div>
+            `;
+            
+            document.body.appendChild(overlay);
+            document.body.appendChild(alert);
+            
+            // Store references for cleanup
+            window.currentAlert = alert;
+            window.currentOverlay = overlay;
+        }
+
+        function closeCustomAlert() {
+            if (window.currentAlert) {
+                document.body.removeChild(window.currentAlert);
+                document.body.removeChild(window.currentOverlay);
+                window.currentAlert = null;
+                window.currentOverlay = null;
+            }
+        }
+
+        function confirmReset() {
+            closeCustomAlert();
+            
+            gameState = {
+                currentCrisis: 1,
+                budget: 500000,
+                brandTrust: 85,
+                socialSentiment: 'neutral',
+                timeRemaining: 21,
+                decisions: [],
+                reflections: [],
+                score: 0
+            };
+
+            document.getElementById('currentCrisis').textContent = '1';
+            document.getElementById('progressFill').style.width = '20%';
+            document.getElementById('completionScreen').style.display = 'none';
+            document.getElementById('crisisContainer').style.display = 'block';
+            document.getElementById('decisionOptions').style.display = 'grid';
+            document.getElementById('metricsDashboard').style.display = 'grid';
+            document.getElementById('consequencesPanel').classList.remove('show');
+            document.getElementById('reflectionPanel').style.display = 'none';
+
+            initializeSimulation();
+        }
+
+        // Post message to parent frame for height adjustment
+        function updateParentFrameHeight() {
+            if (window.parent !== window) {
+                const height = Math.max(
+                    document.body.scrollHeight,
+                    document.body.offsetHeight,
+                    document.documentElement.clientHeight,
+                    document.documentElement.scrollHeight,
+                    document.documentElement.offsetHeight
+                );
+                
+                window.parent.postMessage({
+                    type: 'resize',
+                    height: height
+                }, '*');
+            }
+        }
+
+        // Call height update on content changes
+        function updateContent() {
+            setTimeout(updateParentFrameHeight, 100);
+        }
+
+        // Auto-resize textarea
+        function autoResize(textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = textarea.scrollHeight + 'px';
+        }
+
+        // Add event listener for reflection textarea
+        document.addEventListener('DOMContentLoaded', function() {
+            const reflectionInput = document.getElementById('reflectionInput');
+            if (reflectionInput) {
+                reflectionInput.addEventListener('input', function() {
+                    autoResize(this);
+                });
+            }
+        });
+
+        // Initialize when page loads
+        window.onload = function() {
+            initializeSimulation();
+            updateParentFrameHeight();
+            
+            // Update height when content changes
+            const observer = new MutationObserver(updateContent);
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true,
+                attributes: true,
+                attributeFilter: ['style', 'class']
+            });
+        };
+
+        // Update parent frame height when window resizes
+        window.addEventListener('resize', updateParentFrameHeight);
+        
+        // Override functions that change content to trigger height updates
+        const originalShowConsequences = showConsequences;
+        showConsequences = function(decision) {
+            originalShowConsequences(decision);
+            updateContent();
+        };
+
+        const originalNextCrisis = nextCrisis;
+        nextCrisis = function() {
+            originalNextCrisis();
+            updateContent();
+        };
+
+        const originalSaveReflection = saveReflection;
+        saveReflection = function() {
+            originalSaveReflection();
+            updateContent();
+        };
+    </script>
+</body>
+</html>
