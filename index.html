@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marketing Disruption Experience - EcoBloom Coffee Crisis</title>
+    <title>Brand Manager Bootcamp - Launch Readiness Assessment</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         /* iframe-specific optimizations */
@@ -504,10 +504,10 @@
 <body>
     <div class="header">
         <div class="header-content">
-            <div class="logo">EB</div>
+            <div class="logo">BM</div>
             <div class="header-text">
-                <h1>Marketing Crisis Simulation</h1>
-                <p>Navigate real-world marketing disruptions as EcoBloom's Marketing Director</p>
+                <h1>Brand Manager Bootcamp</h1>
+                <p>Master product launch skills through real-world marketing challenges</p>
             </div>
         </div>
     </div>
@@ -516,7 +516,7 @@
         <div class="scenario-container">
             <!-- Progress Indicator -->
             <div class="scenario-progress">
-                <div class="scenario-number">Crisis <span id="currentCrisis">1</span> of 5</div>
+                <div class="scenario-number">Challenge <span id="currentCrisis">1</span> of 5</div>
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressFill" style="width: 20%"></div>
                 </div>
@@ -525,30 +525,30 @@
 
             <!-- Brand Information -->
             <div class="brand-info" id="brandInfo">
-                <h3>🌱 EcoBloom Coffee</h3>
-                <p><strong>Your Role:</strong> Marketing Director (Day 1 on the job!)</p>
-                <p><strong>Company:</strong> Mid-size sustainable coffee roaster, 15 years in business</p>
-                <p><strong>Mission:</strong> Launching "Urban Harvest" cold brew line targeting busy professionals</p>
-                <p><strong>Budget:</strong> $500K quarterly • <strong>Timeline:</strong> 3 weeks to launch</p>
+                <h3>💼 MidMarket Consumer Products</h3>
+                <p><strong>Your Role:</strong> Junior Brand Manager</p>
+                <p><strong>Product:</strong> "FreshFlow" sustainable water bottles targeting health-conscious millennials</p>
+                <p><strong>Challenge:</strong> Launch timeline compressed from 24 weeks to 12 weeks</p>
+                <p><strong>Budget:</strong> $2.5M total • <strong>Price Point:</strong> $24.99 retail</p>
             </div>
 
             <!-- Current Metrics Dashboard -->
             <div class="metrics-dashboard" id="metricsDashboard">
                 <div class="metric-card">
-                    <div class="metric-value" id="budgetRemaining">$500K</div>
-                    <div class="metric-label">Budget Remaining</div>
+                    <div class="metric-value" id="budgetRemaining">$2.5M</div>
+                    <div class="metric-label">Launch Budget</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-value" id="brandTrust">85%</div>
-                    <div class="metric-label">Brand Trust</div>
+                    <div class="metric-value" id="timeRemaining">12 weeks</div>
+                    <div class="metric-label">Timeline</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-value" id="socialSentiment">Neutral</div>
-                    <div class="metric-label">Social Sentiment</div>
+                    <div class="metric-value" id="retailStatus">0/3</div>
+                    <div class="metric-label">Retail Partners</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-value" id="timeRemaining">21 days</div>
-                    <div class="metric-label">Launch Countdown</div>
+                    <div class="metric-value" id="confidenceLevel">?</div>
+                    <div class="metric-label">Your Confidence</div>
                 </div>
             </div>
 
@@ -562,18 +562,33 @@
                 <!-- Decision cards will be dynamically generated -->
             </div>
 
+            <!-- Confidence Assessment Panel -->
+            <div class="reflection-panel" id="confidencePanel" style="display: none;">
+                <h4>🤔 Confidence Check</h4>
+                <p>How confident are you in this decision?</p>
+                <div style="display: flex; align-items: center; gap: 16px; margin: 16px 0;">
+                    <span>Not Confident</span>
+                    <input type="range" id="confidenceSlider" min="1" max="10" value="5" style="flex: 1;">
+                    <span>Very Confident</span>
+                    <span id="confidenceValue" style="font-weight: 600;">5</span>
+                </div>
+                <p style="margin-top: 16px;">What information would help you feel more confident?</p>
+                <textarea class="reflection-input" id="confidenceInput" placeholder="What additional data, research, or expertise would help you make this decision with greater confidence?"></textarea>
+                <button class="continue-btn" onclick="submitConfidence()">Continue</button>
+            </div>
+
             <!-- Consequences Panel -->
             <div class="consequences-panel" id="consequencesPanel">
-                <h4>📊 Immediate Impact</h4>
+                <h4>📊 Decision Impact</h4>
                 <div id="consequencesContent"></div>
                 
-                <!-- Social Media Feed -->
-                <div class="social-media-feed" id="socialFeed" style="display: none;">
-                    <h5 style="margin-bottom: 12px;">📱 Social Media Reactions</h5>
-                    <div id="socialPosts"></div>
+                <!-- Knowledge Gap Insights -->
+                <div class="social-media-feed" id="knowledgeGaps" style="display: none;">
+                    <h5 style="margin-bottom: 12px;">💡 Learning Opportunities</h5>
+                    <div id="gapContent"></div>
                 </div>
 
-                <button class="continue-btn" id="continueBtn" onclick="nextCrisis()">Continue to Next Crisis</button>
+                <button class="continue-btn" id="continueBtn" onclick="nextChallenge()">Continue to Next Challenge</button>
             </div>
 
             <!-- Reflection Panel -->
@@ -598,47 +613,52 @@
     <script>
         // Game State
         let gameState = {
-            currentCrisis: 1,
-            budget: 500000,
-            brandTrust: 85,
-            socialSentiment: 'neutral',
-            timeRemaining: 21,
+            currentChallenge: 1,
+            budget: 2500000,
+            timeRemaining: 12,
+            retailPartners: 0,
+            confidenceLevel: 0,
             decisions: [],
-            reflections: [],
+            confidenceData: [],
+            knowledgeGaps: [],
             score: 0
         };
 
-        // Crisis Data
-        const crises = [
+        // Challenge Data
+        const challenges = [
             {
                 id: 1,
-                title: "Supplier Scandal Breaks",
-                description: "Your primary coffee supplier, GreenSource Coffee, has been exposed in a major investigative report for illegal deforestation practices in Costa Rica. #EcoBloomScandal is trending on social media with over 50K mentions in the past hour.",
-                details: "Environmental activists are calling for boycotts, and your company's sustainability claims are being questioned. Your CEO needs an immediate response strategy.",
+                title: "The Accelerated Launch Challenge",
+                description: "Your CMO just walked into your office: 'We need to move fast. Our biggest competitor just announced they're launching something similar in Q2. We're moving your Q3 launch to Q1 - you now have 12 weeks instead of 24.'",
+                details: "The board wants to see your revised launch strategy by Friday. Budget stays the same: $2.5M total launch budget. Your target retailers are Target, REI, and Whole Foods, but partnerships aren't secured yet.",
                 options: [
                     {
                         id: 'a',
-                        title: "Immediate Public Apology & Supplier Termination",
-                        description: "Issue a public statement immediately, apologize for the oversight, and announce termination of the supplier relationship.",
-                        impact: { budget: -50000, trust: -5, sentiment: 'mixed', time: 0 }
+                        title: "Secure Retail Partnerships First",
+                        description: "Rush to lock in Target, REI, and Whole Foods shelf space before competitor gets there. Dedicate 60% of timeline to retail negotiations.",
+                        impact: { budget: -200000, time: -2, retailers: 2, risk: 'medium' },
+                        knowledgeGaps: ['retail_timing', 'trade_marketing']
                     },
                     {
                         id: 'b',
-                        title: "Launch Internal Investigation First",
-                        description: "Pause public communications while conducting a thorough internal investigation to gather all facts before responding.",
-                        impact: { budget: -25000, trust: -10, sentiment: 'negative', time: -2 }
+                        title: "Build Consumer Demand First",
+                        description: "Focus on digital marketing and influencer partnerships to create consumer pull before approaching retailers.",
+                        impact: { budget: -500000, time: -1, retailers: 0, risk: 'high' },
+                        knowledgeGaps: ['demand_generation', 'digital_strategy']
                     },
                     {
                         id: 'c',
-                        title: "Deflect & Defend Brand Values",
-                        description: "Emphasize that EcoBloom wasn't directly involved and highlight your company's strong environmental track record.",
-                        impact: { budget: -10000, trust: -15, sentiment: 'very negative', time: 0 }
+                        title: "Balanced Dual-Track Approach",
+                        description: "Split teams - simultaneously pursue retail partnerships and consumer marketing with compressed timelines.",
+                        impact: { budget: -300000, time: -2, retailers: 1, risk: 'medium' },
+                        knowledgeGaps: ['resource_allocation', 'project_management']
                     },
                     {
                         id: 'd',
-                        title: "Pause All Marketing Until Resolution",
-                        description: "Halt all marketing activities and the Urban Harvest launch until the situation is completely resolved.",
-                        impact: { budget: 0, trust: -8, sentiment: 'neutral', time: -7 }
+                        title: "Request Timeline Extension",
+                        description: "Go back to CMO with data showing why 12 weeks is insufficient for successful launch.",
+                        impact: { budget: 0, time: 0, retailers: 0, risk: 'very_high' },
+                        knowledgeGaps: ['stakeholder_management', 'executive_communication']
                     }
                 ]
             },
@@ -772,6 +792,18 @@
             }
         ];
 
+        // Knowledge gap explanations
+        const knowledgeGapExplanations = {
+            'retail_timing': 'Understanding when and how to approach retailers is critical for shelf space success. You\'ll learn retail partnership strategies in Module 3.',
+            'trade_marketing': 'Trade marketing tactics help secure retailer buy-in beyond just product quality. Guest speakers will cover this.',
+            'demand_generation': 'Creating consumer pull requires understanding digital channels and influencer marketing effectiveness.',
+            'digital_strategy': 'Modern digital marketing spans multiple touchpoints. Module 5 covers integrated digital campaigns.',
+            'resource_allocation': 'Managing multiple priorities simultaneously requires strong project management skills.',
+            'project_management': 'Launch timeline management is crucial for brand manager success. You\'ll practice this in upcoming scenarios.',
+            'stakeholder_management': 'Managing up to executives requires specific communication strategies. Agency-client dynamics will help here.',
+            'executive_communication': 'Presenting to C-suite requires different skills than peer communication. Final assignment prep will focus on this.'
+        };
+
         // Social media posts for different scenarios
         const socialPosts = {
             1: {
@@ -807,31 +839,40 @@
 
         // Initialize the simulation
         function initializeSimulation() {
-            displayCrisis(crises[0]);
+            displayChallenge(challenges[0]);
             updateMetrics();
+            
+            // Setup confidence slider
+            const slider = document.getElementById('confidenceSlider');
+            const value = document.getElementById('confidenceValue');
+            if (slider && value) {
+                slider.oninput = function() {
+                    value.textContent = this.value;
+                };
+            }
         }
 
-        // Display current crisis
-        function displayCrisis(crisis) {
+        // Display current challenge
+        function displayChallenge(challenge) {
             const container = document.getElementById('crisisContainer');
             container.innerHTML = `
                 <div class="crisis-alert">
-                    <h3>Breaking: ${crisis.title}</h3>
-                    <p>${crisis.description}</p>
+                    <h3>Challenge: ${challenge.title}</h3>
+                    <p>${challenge.description}</p>
                 </div>
                 <div class="professor-card">
                     <div class="professor-info">
-                        <div class="professor-avatar">📞</div>
+                        <div class="professor-avatar">💼</div>
                         <div class="professor-details">
-                            <h3>CEO Emergency Call</h3>
-                            <p>Urgent Strategy Meeting</p>
+                            <h3>CMO Briefing</h3>
+                            <p>Strategic Decision Required</p>
                         </div>
                     </div>
-                    <p>${crisis.details}</p>
+                    <p>${challenge.details}</p>
                 </div>
             `;
 
-            displayDecisionOptions(crisis.options);
+            displayDecisionOptions(challenge.options);
         }
 
         // Display decision options
@@ -861,32 +902,72 @@
             // Mark current selection
             event.currentTarget.classList.add('selected');
 
+            // Store decision for confidence assessment
+            window.currentDecision = decision;
+
+            // Show confidence assessment
+            document.getElementById('confidencePanel').style.display = 'block';
+        }
+
+        // Submit confidence assessment
+        function submitConfidence() {
+            const confidenceLevel = document.getElementById('confidenceSlider').value;
+            const confidenceNotes = document.getElementById('confidenceInput').value;
+            
+            // Store confidence data
+            gameState.confidenceData.push({
+                challenge: gameState.currentChallenge,
+                confidence: parseInt(confidenceLevel),
+                notes: confidenceNotes,
+                decision: window.currentDecision.id
+            });
+
             // Store decision
             gameState.decisions.push({
-                crisis: gameState.currentCrisis,
-                decision: decision.id,
-                title: decision.title
+                challenge: gameState.currentChallenge,
+                decision: window.currentDecision.id,
+                title: window.currentDecision.title,
+                confidence: parseInt(confidenceLevel)
             });
 
             // Apply impact
-            applyDecisionImpact(decision.impact);
+            applyDecisionImpact(window.currentDecision.impact);
+
+            // Identify knowledge gaps
+            identifyKnowledgeGaps(window.currentDecision.knowledgeGaps, parseInt(confidenceLevel));
 
             // Show consequences
-            showConsequences(decision);
+            showConsequences(window.currentDecision);
 
             // Update metrics
             updateMetrics();
+
+            // Hide confidence panel, clear input
+            document.getElementById('confidencePanel').style.display = 'none';
+            document.getElementById('confidenceInput').value = '';
+            document.getElementById('confidenceSlider').value = '5';
+            document.getElementById('confidenceValue').textContent = '5';
         }
 
         // Apply decision impact to game state
         function applyDecisionImpact(impact) {
             gameState.budget += impact.budget;
-            gameState.brandTrust += impact.trust;
-            gameState.socialSentiment = impact.sentiment;
             gameState.timeRemaining += impact.time;
+            gameState.retailPartners += impact.retailers || 0;
             
             // Calculate score based on performance
             gameState.score += calculateDecisionScore(impact);
+        }
+
+        // Identify knowledge gaps based on decision and confidence
+        function identifyKnowledgeGaps(gaps, confidence) {
+            if (confidence < 7 && gaps) {
+                gaps.forEach(gap => {
+                    if (!gameState.knowledgeGaps.includes(gap)) {
+                        gameState.knowledgeGaps.push(gap);
+                    }
+                });
+            }
         }
 
         // Calculate score for decision
@@ -913,26 +994,26 @@
             
             content.innerHTML = `
                 <p><strong>Budget Impact:</strong> ${decision.impact.budget < 0 ? '-' : '+'}$${Math.abs(decision.impact.budget).toLocaleString()}</p>
-                <p><strong>Brand Trust:</strong> ${decision.impact.trust > 0 ? '+' : ''}${decision.impact.trust}%</p>
-                <p><strong>Social Sentiment:</strong> ${decision.impact.sentiment}</p>
-                <p><strong>Timeline Impact:</strong> ${decision.impact.time} days</p>
+                <p><strong>Timeline Impact:</strong> ${decision.impact.time} weeks</p>
+                <p><strong>Retail Partners Secured:</strong> +${decision.impact.retailers || 0}</p>
+                <p><strong>Risk Level:</strong> ${decision.impact.risk}</p>
             `;
 
-            // Show social media reactions if available
-            const socialFeed = document.getElementById('socialFeed');
-            const socialPosts_ = socialPosts[gameState.currentCrisis];
-            if (socialPosts_ && socialPosts_[decision.id]) {
-                const postsContainer = document.getElementById('socialPosts');
-                postsContainer.innerHTML = '';
-                
-                socialPosts_[decision.id].forEach(post => {
-                    const postDiv = document.createElement('div');
-                    postDiv.className = 'social-post';
-                    postDiv.innerHTML = `<span class="username">${post.user}</span>: ${post.text}`;
-                    postsContainer.appendChild(postDiv);
+            // Show knowledge gap insights
+            const knowledgeGapPanel = document.getElementById('knowledgeGaps');
+            const gapContent = document.getElementById('gapContent');
+            
+            if (gameState.knowledgeGaps.length > 0) {
+                gapContent.innerHTML = '';
+                gameState.knowledgeGaps.forEach(gap => {
+                    if (knowledgeGapExplanations[gap]) {
+                        const gapDiv = document.createElement('div');
+                        gapDiv.className = 'social-post';
+                        gapDiv.innerHTML = `<strong>Learning Opportunity:</strong> ${knowledgeGapExplanations[gap]}`;
+                        gapContent.appendChild(gapDiv);
+                    }
                 });
-                
-                socialFeed.style.display = 'block';
+                knowledgeGapPanel.style.display = 'block';
             }
 
             panel.classList.add('show');
@@ -941,14 +1022,19 @@
         // Update metrics dashboard
         function updateMetrics() {
             document.getElementById('budgetRemaining').textContent = `$${Math.max(0, gameState.budget).toLocaleString()}`;
-            document.getElementById('brandTrust').textContent = `${Math.max(0, gameState.brandTrust)}%`;
-            document.getElementById('socialSentiment').textContent = gameState.socialSentiment.charAt(0).toUpperCase() + gameState.socialSentiment.slice(1);
-            document.getElementById('timeRemaining').textContent = `${Math.max(0, gameState.timeRemaining)} days`;
+            document.getElementById('timeRemaining').textContent = `${Math.max(0, gameState.timeRemaining)} weeks`;
+            document.getElementById('retailStatus').textContent = `${gameState.retailPartners}/3`;
+            
+            // Update confidence level (average of all decisions)
+            if (gameState.confidenceData.length > 0) {
+                const avgConfidence = gameState.confidenceData.reduce((sum, data) => sum + data.confidence, 0) / gameState.confidenceData.length;
+                document.getElementById('confidenceLevel').textContent = avgConfidence.toFixed(1);
+            }
         }
 
-        // Continue to next crisis
-        function nextCrisis() {
-            if (gameState.currentCrisis < 5) {
+        // Continue to next challenge
+        function nextChallenge() {
+            if (gameState.currentChallenge < 5) {
                 // Show reflection panel
                 document.getElementById('reflectionPanel').style.display = 'block';
                 document.getElementById('consequencesPanel').style.display = 'none';
@@ -961,19 +1047,19 @@
         function saveReflection() {
             const reflection = document.getElementById('reflectionInput').value;
             gameState.reflections.push({
-                crisis: gameState.currentCrisis,
+                challenge: gameState.currentChallenge,
                 reflection: reflection
             });
 
             document.getElementById('reflectionPanel').style.display = 'none';
             document.getElementById('reflectionInput').value = '';
 
-            if (gameState.currentCrisis < 5) {
-                gameState.currentCrisis++;
-                document.getElementById('currentCrisis').textContent = gameState.currentCrisis;
-                document.getElementById('progressFill').style.width = `${(gameState.currentCrisis / 5) * 100}%`;
+            if (gameState.currentChallenge < 5) {
+                gameState.currentChallenge++;
+                document.getElementById('currentCrisis').textContent = gameState.currentChallenge;
+                document.getElementById('progressFill').style.width = `${(gameState.currentChallenge / 5) * 100}%`;
                 
-                displayCrisis(crises[gameState.currentCrisis - 1]);
+                displayChallenge(challenges[gameState.currentChallenge - 1]);
                 document.getElementById('consequencesPanel').classList.remove('show');
             } else {
                 completeSimulation();
@@ -1048,12 +1134,14 @@
             closeCustomAlert();
             
             gameState = {
-                currentCrisis: 1,
-                budget: 500000,
-                brandTrust: 85,
-                socialSentiment: 'neutral',
-                timeRemaining: 21,
+                currentChallenge: 1,
+                budget: 2500000,
+                timeRemaining: 12,
+                retailPartners: 0,
+                confidenceLevel: 0,
                 decisions: [],
+                confidenceData: [],
+                knowledgeGaps: [],
                 reflections: [],
                 score: 0
             };
@@ -1066,6 +1154,7 @@
             document.getElementById('metricsDashboard').style.display = 'grid';
             document.getElementById('consequencesPanel').classList.remove('show');
             document.getElementById('reflectionPanel').style.display = 'none';
+            document.getElementById('confidencePanel').style.display = 'none';
 
             initializeSimulation();
         }
